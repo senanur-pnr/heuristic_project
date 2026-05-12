@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="480" viewBox="0 0 720 480">
+  <rect width="100%" height="100%" fill="white"/>
+  <text x="360.0" y="28" text-anchor="middle" font-family="Arial" font-size="18">user125_spea2_nodiversity: cost vs time</text>
+  <line x1="60" y1="420" x2="660" y2="420" stroke="#222"/>
+  <line x1="60" y1="60" x2="60" y2="420" stroke="#222"/>
+  <text x="360.0" y="464" text-anchor="middle" font-family="Arial" font-size="13">cost</text>
+  <text transform="translate(18 240.0) rotate(-90)" text-anchor="middle" font-family="Arial" font-size="13">time</text>
+  <circle cx="660.0" cy="378.0" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="660.0" cy="378.0" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="141.9" cy="338.2" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="141.9" cy="338.2" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="438.0" cy="262.1" r="5" fill="rgb(30,70,150)" opacity="0.8"/>
+<circle cx="80.3" cy="247.4" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="174.0" cy="346.2" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="60.0" cy="150.9" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="141.9" cy="338.2" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="174.0" cy="346.2" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="660.0" cy="378.0" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="660.0" cy="378.0" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="141.9" cy="338.2" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="141.9" cy="338.2" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="660.0" cy="378.0" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="174.0" cy="346.2" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="174.0" cy="346.2" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="174.0" cy="346.2" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="320.5" cy="60.0" r="5" fill="rgb(30,70,150)" opacity="0.8"/>
+<circle cx="660.0" cy="378.0" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="660.0" cy="378.0" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="141.9" cy="338.2" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="320.5" cy="60.0" r="5" fill="rgb(30,70,150)" opacity="0.8"/>
+<circle cx="80.3" cy="247.4" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="80.3" cy="247.4" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="80.3" cy="247.4" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="340.8" cy="420.0" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="340.8" cy="420.0" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="340.8" cy="420.0" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="340.8" cy="420.0" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="340.8" cy="420.0" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="340.8" cy="420.0" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="320.5" cy="60.0" r="5" fill="rgb(30,70,150)" opacity="0.8"/>
+<circle cx="141.9" cy="338.2" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="230.6" cy="374.6" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="230.6" cy="374.6" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="230.6" cy="374.6" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="230.6" cy="374.6" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="230.6" cy="374.6" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="80.3" cy="247.4" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="80.3" cy="247.4" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="80.3" cy="247.4" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="60.0" cy="150.9" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="320.5" cy="60.0" r="5" fill="rgb(30,70,150)" opacity="0.8"/>
+<circle cx="320.5" cy="60.0" r="5" fill="rgb(30,70,150)" opacity="0.8"/>
+<circle cx="320.5" cy="60.0" r="5" fill="rgb(30,70,150)" opacity="0.8"/>
+<circle cx="320.5" cy="60.0" r="5" fill="rgb(30,70,150)" opacity="0.8"/>
+<circle cx="320.5" cy="60.0" r="5" fill="rgb(30,70,150)" opacity="0.8"/>
+<circle cx="320.5" cy="60.0" r="5" fill="rgb(30,70,150)" opacity="0.8"/>
+<circle cx="320.5" cy="60.0" r="5" fill="rgb(30,70,150)" opacity="0.8"/>
+</svg>

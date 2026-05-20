@@ -1,11 +1,11 @@
 from __future__ import annotations
 
-import csv
-import re
+import os
 from dataclasses import dataclass
-from io import StringIO
-from pathlib import Path
 from typing import Any
+
+import mysql.connector
+from dotenv import load_dotenv
 
 
 @dataclass(frozen=True)
@@ -47,181 +47,105 @@ class DietData:
     user_preferences: dict[int, dict[int, float]]
 
 
-TABLE_COLUMNS = {
-    "foods": [
-        "id",
-        "name",
-        "foodGroupId",
-        "caseStudy",
-        "portion",
-        "cost",
-        "preference",
-        "preference2",
-        "preparingTime",
-        "cookingTime",
-        "rating",
-        "co2",
-        "availability",
-        "picUrl",
-        "nameRoots",
-    ],
-    "food_group": ["id", "name"],
-    "food_nutrients": ["id", "foodId", "nutrientId", "quantity"],
-    "nutrients": ["id", "name", "nGroupId", "unitId"],
-    "dri": ["id", "nutrient_id", "low_age", "up_age", "gender", "RLL", "RUL"],
-    "user": [
-        "id",
-        "name",
-        "surname",
-        "username",
-        "password",
-        "type",
-        "date",
-        "age",
-        "gender",
-        "height",
-        "weight",
-    ],
-    "user_foods": ["id", "userId", "userName", "foodId", "foodName", "preference"],
-}
+def get_connection():
+    load_dotenv()
 
-
-def load_diet_data(sql_path: str | Path) -> DietData:
-    text = Path(sql_path).read_text(encoding="utf-8")
-    raw_tables = {table: _read_insert_rows(text, table) for table in TABLE_COLUMNS}
-
-    food_groups = {int(row["id"]): str(row["name"]) for row in raw_tables["food_group"]}
-    nutrients = {int(row["id"]): str(row["name"]) for row in raw_tables["nutrients"]}
-
-    food_nutrients: dict[int, dict[int, float]] = {}
-    for row in raw_tables["food_nutrients"]:
-        food_nutrients.setdefault(int(row["foodId"]), {})[int(row["nutrientId"])] = float(row["quantity"])
-
-    foods: dict[int, Food] = {}
-    for row in raw_tables["foods"]:
-        food_id = int(row["id"])
-        foods[food_id] = Food(
-            id=food_id,
-            name=str(row["name"]),
-            food_group_id=int(row["foodGroupId"]),
-            portion=int(row["portion"]),
-            cost=float(row["cost"]),
-            preference=float(row["preference"]),
-            preference2=float(row["preference2"]),
-            preparing_time=float(row["preparingTime"]),
-            cooking_time=float(row["cookingTime"] or 0),
-            rating=float(row["rating"]),
-            co2=float(row["co2"]),
-            availability=int(row["availability"]),
-            nutrients=food_nutrients.get(food_id, {}),
-        )
-
-    users = [
-        User(
-            id=int(row["id"]),
-            name=str(row["name"] or ""),
-            surname=str(row["surname"] or ""),
-            username=str(row["username"]),
-            age=int(row["age"] or 30),
-            gender=str(row["gender"] or "adult"),
-            height=int(row["height"] or 170),
-            weight=int(row["weight"] or 70),
-        )
-        for row in raw_tables["user"]
-    ]
-
-    user_preferences: dict[int, dict[int, float]] = {}
-    for row in raw_tables["user_foods"]:
-        if row["preference"] is None or row["foodId"] is None:
-            continue
-        user_preferences.setdefault(int(row["userId"]), {})[int(row["foodId"])] = float(row["preference"])
-
-    dri_rows = [
-        {
-            "nutrient_id": int(row["nutrient_id"]),
-            "low_age": int(row["low_age"]),
-            "up_age": int(row["up_age"]),
-            "gender": str(row["gender"]).lower(),
-            "RLL": float(row["RLL"]),
-            "RUL": float(row["RUL"]),
-        }
-        for row in raw_tables["dri"]
-    ]
-
-    return DietData(
-        foods=foods,
-        food_groups=food_groups,
-        nutrients=nutrients,
-        dri_rows=dri_rows,
-        users=users,
-        user_preferences=user_preferences,
+    return mysql.connector.connect(
+        host=os.getenv("DB_HOST", "localhost"),
+        user=os.getenv("DB_USER", "root"),
+        password=os.getenv("DB_PASSWORD", ""),
+        database=os.getenv("DB_NAME", "modp_db"),
     )
 
 
-def _read_insert_rows(sql_text: str, table: str) -> list[dict[str, Any]]:
-    columns = TABLE_COLUMNS[table]
-    pattern = re.compile(
-        rf"INSERT INTO `{re.escape(table)}` \([^)]+\) VALUES\s*(.*?);",
-        flags=re.DOTALL,
-    )
-    rows: list[dict[str, Any]] = []
-    for match in pattern.finditer(sql_text):
-        for values in _split_tuples(match.group(1)):
-            parsed = _parse_tuple(values)
-            rows.append(dict(zip(columns, parsed)))
-    return rows
+def fetch_all(cursor, query: str):
+    cursor.execute(query)
+    return cursor.fetchall()
 
 
-def _split_tuples(values_sql: str) -> list[str]:
-    tuples: list[str] = []
-    in_quote = False
-    escape = False
-    depth = 0
-    start = -1
-    for i, ch in enumerate(values_sql):
-        if escape:
-            escape = False
-            continue
-        if ch == "\\":
-            escape = True
-            continue
-        if ch == "'":
-            in_quote = not in_quote
-            continue
-        if in_quote:
-            continue
-        if ch == "(":
-            if depth == 0:
-                start = i + 1
-            depth += 1
-        elif ch == ")":
-            depth -= 1
-            if depth == 0 and start >= 0:
-                tuples.append(values_sql[start:i])
-    return tuples
+def load_diet_data(sql_path: str | None = None) -> DietData:
+    connection = get_connection()
+    cursor = connection.cursor(dictionary=True)
 
-
-def _parse_tuple(tuple_sql: str) -> list[Any]:
-    normalized = re.sub(r"\bNULL\b", "", tuple_sql)
-    reader = csv.reader(
-        StringIO(normalized),
-        delimiter=",",
-        quotechar="'",
-        escapechar="\\",
-        skipinitialspace=True,
-    )
-    return [_coerce(value) for value in next(reader)]
-
-
-def _coerce(value: str) -> Any:
-    if value == "":
-        return None
-    value = value.replace("\\'", "'")
     try:
-        if re.fullmatch(r"-?\d+", value):
-            return int(value)
-        if re.fullmatch(r"-?(\d+\.?\d*|\.\d+)([eE]-?\d+)?", value):
-            return float(value)
-    except ValueError:
-        pass
-    return value
+        food_group_rows = fetch_all(cursor, "SELECT id, name FROM food_group")
+        nutrient_rows = fetch_all(cursor, "SELECT id, name FROM nutrients")
+        food_nutrient_rows = fetch_all(cursor, "SELECT foodId, nutrientId, quantity FROM food_nutrients")
+        food_rows = fetch_all(cursor, "SELECT * FROM foods")
+        user_rows = fetch_all(cursor, "SELECT * FROM user")
+        user_food_rows = fetch_all(cursor, "SELECT * FROM user_foods")
+        dri_db_rows = fetch_all(cursor, "SELECT * FROM dri")
+
+        food_groups = {int(row["id"]): str(row["name"]) for row in food_group_rows}
+        nutrients = {int(row["id"]): str(row["name"]) for row in nutrient_rows}
+
+        food_nutrients: dict[int, dict[int, float]] = {}
+        for row in food_nutrient_rows:
+            food_id = int(row["foodId"])
+            nutrient_id = int(row["nutrientId"])
+            quantity = float(row["quantity"] or 0)
+            food_nutrients.setdefault(food_id, {})[nutrient_id] = quantity
+
+        foods: dict[int, Food] = {}
+        for row in food_rows:
+            food_id = int(row["id"])
+            foods[food_id] = Food(
+                id=food_id,
+                name=str(row["name"]),
+                food_group_id=int(row["foodGroupId"]),
+                portion=int(row["portion"] or 0),
+                cost=float(row["cost"] or 0),
+                preference=float(row["preference"] or 0),
+                preference2=float(row["preference2"] or 0),
+                preparing_time=float(row["preparingTime"] or 0),
+                cooking_time=float(row["cookingTime"] or 0),
+                rating=float(row["rating"] or 0),
+                co2=float(row["co2"] or 0),
+                availability=int(row["availability"] or 0),
+                nutrients=food_nutrients.get(food_id, {}),
+            )
+
+        users = [
+            User(
+                id=int(row["id"]),
+                name=str(row["name"] or ""),
+                surname=str(row["surname"] or ""),
+                username=str(row["username"] or ""),
+                age=int(row["age"] or 30),
+                gender=str(row["gender"] or "adult"),
+                height=int(row["height"] or 170),
+                weight=int(row["weight"] or 70),
+            )
+            for row in user_rows
+        ]
+
+        user_preferences: dict[int, dict[int, float]] = {}
+        for row in user_food_rows:
+            if row["preference"] is None or row["foodId"] is None:
+                continue
+            user_preferences.setdefault(int(row["userId"]), {})[int(row["foodId"])] = float(row["preference"])
+
+        dri_rows = [
+            {
+                "nutrient_id": int(row["nutrient_id"]),
+                "low_age": int(row["low_age"]),
+                "up_age": int(row["up_age"]),
+                "gender": str(row["gender"]).lower(),
+                "RLL": float(row["RLL"]),
+                "RUL": float(row["RUL"]),
+            }
+            for row in dri_db_rows
+        ]
+
+        return DietData(
+            foods=foods,
+            food_groups=food_groups,
+            nutrients=nutrients,
+            dri_rows=dri_rows,
+            users=users,
+            user_preferences=user_preferences,
+        )
+
+    finally:
+        cursor.close()
+        connection.close()

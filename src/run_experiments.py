@@ -105,9 +105,16 @@ def main() -> None:
 
 
 def first_two_users_with_roles(users: list[User]) -> list[User]:
-    if len(users) < 2:
-        raise ValueError("The users table must contain at least two users.")
-    return users[:2]
+    selected_users = [user for user in users if user.id in (1, 2)]
+
+    if len(selected_users) != 2:
+        existing_ids = [user.id for user in users]
+        raise ValueError(
+            f"User 1 and User 2 must exist in the database. Existing user IDs: {existing_ids}"
+        )
+
+    return sorted(selected_users, key=lambda user: user.id)
+
 
 
 def common_reference_point(runs: list[object]) -> tuple[float, ...]:

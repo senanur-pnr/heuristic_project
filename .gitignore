@@ -2,3 +2,6 @@
 __pycache__/
 *.pyc
 results_smoke/
+.env
+.venv
+__pycache__

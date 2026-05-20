@@ -1,128 +1,128 @@
 [
   {
-    "user_id": 3,
-    "username": "user_nova_2680",
+    "user_id": 1,
+    "username": "user_gamma_3991",
     "detected_vegetarian": false,
     "algorithm": "NSGA-II",
     "diversity": false,
-    "pareto_count": 50,
-    "last_hypervolume": 10966530.031950153,
+    "pareto_count": 9,
+    "last_hypervolume": 23452690.214770008,
     "common_reference_point": [
-      91.66666666666666,
-      97.54066666666667,
-      773.0
+      153.5160824999999,
+      255.6290824999999,
+      700.7353741721782
     ],
     "breakfast_pool": 94,
     "lunch_dinner_pool": 311
   },
   {
-    "user_id": 3,
-    "username": "user_nova_2680",
+    "user_id": 1,
+    "username": "user_gamma_3991",
     "detected_vegetarian": false,
     "algorithm": "SPEA2",
     "diversity": false,
-    "pareto_count": 50,
-    "last_hypervolume": 10815108.314364905,
+    "pareto_count": 20,
+    "last_hypervolume": 25708102.005917344,
     "common_reference_point": [
-      91.66666666666666,
-      97.54066666666667,
-      773.0
+      153.5160824999999,
+      255.6290824999999,
+      700.7353741721782
     ],
     "breakfast_pool": 94,
     "lunch_dinner_pool": 311
   },
   {
-    "user_id": 3,
-    "username": "user_nova_2680",
+    "user_id": 1,
+    "username": "user_gamma_3991",
     "detected_vegetarian": false,
     "algorithm": "NSGA-II",
     "diversity": true,
-    "pareto_count": 49,
-    "last_hypervolume": 5638252.276461694,
+    "pareto_count": 12,
+    "last_hypervolume": 15563663.053775465,
     "common_reference_point": [
-      91.66666666666666,
-      97.54066666666667,
-      773.0
+      153.5160824999999,
+      255.6290824999999,
+      700.7353741721782
     ],
     "breakfast_pool": 94,
     "lunch_dinner_pool": 311
   },
   {
-    "user_id": 3,
-    "username": "user_nova_2680",
+    "user_id": 1,
+    "username": "user_gamma_3991",
     "detected_vegetarian": false,
     "algorithm": "SPEA2",
     "diversity": true,
-    "pareto_count": 50,
-    "last_hypervolume": 6263847.517804701,
+    "pareto_count": 20,
+    "last_hypervolume": 18964266.275752366,
     "common_reference_point": [
-      91.66666666666666,
-      97.54066666666667,
-      773.0
+      153.5160824999999,
+      255.6290824999999,
+      700.7353741721782
     ],
     "breakfast_pool": 94,
     "lunch_dinner_pool": 311
   },
   {
-    "user_id": 125,
-    "username": "user_omega_4346",
+    "user_id": 2,
+    "username": "user_orbit_1740",
     "detected_vegetarian": true,
     "algorithm": "NSGA-II",
     "diversity": false,
-    "pareto_count": 47,
-    "last_hypervolume": 5274236.30221484,
+    "pareto_count": 13,
+    "last_hypervolume": 28722193.785394434,
     "common_reference_point": [
-      91.66666666666666,
-      97.54066666666667,
-      773.0
+      153.5160824999999,
+      255.6290824999999,
+      700.7353741721782
     ],
     "breakfast_pool": 94,
     "lunch_dinner_pool": 311
   },
   {
-    "user_id": 125,
-    "username": "user_omega_4346",
+    "user_id": 2,
+    "username": "user_orbit_1740",
     "detected_vegetarian": true,
     "algorithm": "SPEA2",
     "diversity": false,
-    "pareto_count": 50,
-    "last_hypervolume": 5131463.295341881,
+    "pareto_count": 20,
+    "last_hypervolume": 23713204.52930834,
     "common_reference_point": [
-      91.66666666666666,
-      97.54066666666667,
-      773.0
+      153.5160824999999,
+      255.6290824999999,
+      700.7353741721782
     ],
     "breakfast_pool": 94,
     "lunch_dinner_pool": 311
   },
   {
-    "user_id": 125,
-    "username": "user_omega_4346",
+    "user_id": 2,
+    "username": "user_orbit_1740",
     "detected_vegetarian": true,
     "algorithm": "NSGA-II",
     "diversity": true,
-    "pareto_count": 35,
-    "last_hypervolume": 2247932.961958112,
+    "pareto_count": 10,
+    "last_hypervolume": 16651225.184160914,
     "common_reference_point": [
-      91.66666666666666,
-      97.54066666666667,
-      773.0
+      153.5160824999999,
+      255.6290824999999,
+      700.7353741721782
     ],
     "breakfast_pool": 94,
     "lunch_dinner_pool": 311
   },
   {
-    "user_id": 125,
-    "username": "user_omega_4346",
+    "user_id": 2,
+    "username": "user_orbit_1740",
     "detected_vegetarian": true,
     "algorithm": "SPEA2",
     "diversity": true,
-    "pareto_count": 50,
-    "last_hypervolume": 2601245.148764308,
+    "pareto_count": 20,
+    "last_hypervolume": 16688671.330470573,
     "common_reference_point": [
-      91.66666666666666,
-      97.54066666666667,
-      773.0
+      153.5160824999999,
+      255.6290824999999,
+      700.7353741721782
     ],
     "breakfast_pool": 94,
     "lunch_dinner_pool": 311

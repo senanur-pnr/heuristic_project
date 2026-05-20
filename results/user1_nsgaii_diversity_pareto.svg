@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="480" viewBox="0 0 720 480">
+  <rect width="100%" height="100%" fill="white"/>
+  <text x="360.0" y="28" text-anchor="middle" font-family="Arial" font-size="18">user1_nsgaii_diversity: cost vs time</text>
+  <line x1="60" y1="420" x2="660" y2="420" stroke="#222"/>
+  <line x1="60" y1="60" x2="60" y2="420" stroke="#222"/>
+  <text x="360.0" y="464" text-anchor="middle" font-family="Arial" font-size="13">cost</text>
+  <text transform="translate(18 240.0) rotate(-90)" text-anchor="middle" font-family="Arial" font-size="13">time</text>
+  <circle cx="235.7" cy="420.0" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="235.7" cy="420.0" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="235.7" cy="420.0" r="5" fill="rgb(30,220,150)" opacity="0.8"/>
+<circle cx="60.0" cy="243.7" r="5" fill="rgb(30,166,150)" opacity="0.8"/>
+<circle cx="60.0" cy="243.7" r="5" fill="rgb(30,166,150)" opacity="0.8"/>
+<circle cx="60.0" cy="243.7" r="5" fill="rgb(30,166,150)" opacity="0.8"/>
+<circle cx="660.0" cy="211.8" r="5" fill="rgb(30,70,150)" opacity="0.8"/>
+<circle cx="660.0" cy="211.8" r="5" fill="rgb(30,70,150)" opacity="0.8"/>
+<circle cx="263.2" cy="60.0" r="5" fill="rgb(30,181,150)" opacity="0.8"/>
+<circle cx="263.2" cy="60.0" r="5" fill="rgb(30,181,150)" opacity="0.8"/>
+<circle cx="263.2" cy="60.0" r="5" fill="rgb(30,181,150)" opacity="0.8"/>
+<circle cx="263.2" cy="60.0" r="5" fill="rgb(30,181,150)" opacity="0.8"/>
+</svg>
